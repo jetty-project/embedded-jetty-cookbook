@@ -7,7 +7,7 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.util.resource.PathResource;
 
-public class ResourceHandlerFromFileSystemExample
+public class ResourceHandlerFromFileSystem
 {
     public static void main(String[] args) throws Exception
     {
