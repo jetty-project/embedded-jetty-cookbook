@@ -22,7 +22,7 @@ public class DefaultServletMultipleBases
         server.addConnector(connector);
         
         // Figure out what path to serve content from
-        ClassLoader cl = ResourceHandlerFromJarExample.class.getClassLoader();
+        ClassLoader cl = DefaultServletMultipleBases.class.getClassLoader();
         // We look for a file, as ClassLoader.getResource() is not
         // designed to look for directories (we resolve the directory later)
         URL f = cl.getResource("static-root/hello.html");

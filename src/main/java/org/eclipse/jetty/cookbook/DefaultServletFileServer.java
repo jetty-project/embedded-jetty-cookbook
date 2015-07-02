@@ -20,7 +20,7 @@ public class DefaultServletFileServer
         server.addConnector(connector);
 
         // Figure out what path to serve content from
-        ClassLoader cl = ResourceHandlerFromJarExample.class.getClassLoader();
+        ClassLoader cl = DefaultServletFileServer.class.getClassLoader();
         // We look for a file, as ClassLoader.getResource() is not
         // designed to look for directories (we resolve the directory later)
         URL f = cl.getResource("static-root/hello.html");
