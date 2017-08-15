@@ -40,6 +40,7 @@ public class DefaultServletMultipleBases
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
         context.setContextPath("/");
         context.setBaseResource(Resource.newResource(webRootUri));
+        context.setWelcomeFiles(new String[]{"index.html", "index.htm", "alt-index.html"});
         server.setHandler(context);
         
         // Find altPath
