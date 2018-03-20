@@ -7,7 +7,7 @@
   <packaging>jar</packaging>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <jetty-version>9.4.6.v20170531</jetty-version>
+    <jetty-version>9.4.9.v20180320</jetty-version>
   </properties>
   <dependencies>
     <dependency>
@@ -74,4 +74,14 @@
       </plugin>
     </plugins>
   </build>
+  <repositories>
+    <repository>
+      <id>jetty-staged-repo</id>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <name>jetty-1338</name>
+      <url>https://oss.sonatype.org/content/repositories/jetty-1338/</url>
+    </repository>
+  </repositories>
 </project>
