@@ -22,7 +22,7 @@ eg:
     StatisticsHandlerExample
     LowResourceMonitorExample
 
-If your example is uses only the feautre name, then use "Example" for your Role.
+If your example is uses only the feature name, then use "Example" for your Role.
 
 What Makes a Good Example:
 --------------------------
