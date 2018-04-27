@@ -74,7 +74,7 @@ public class DeployWebApps
         @Override
         public String[] getBindingTargets()
         {
-            return new String[]{"deploying"};
+            return new String[]{AppLifeCycle.DEPLOYING};
         }
 
         @Override
