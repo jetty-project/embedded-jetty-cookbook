@@ -9,6 +9,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <jetty-version>9.4.18.v20190429</jetty-version>
   </properties>
+  <inceptionYear>1995</inceptionYear>
   <dependencies>
     <dependency>
       <groupId>javax.servlet</groupId>
@@ -78,6 +79,37 @@
                     Jetty ${jetty-version} requires JDK 1.8 or newer</message>
                 </requireJavaVersion>
               </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>com.mycila</groupId>
+        <artifactId>license-maven-plugin</artifactId>
+        <inherited>false</inherited>
+        <configuration>
+          <failIfMissing>true</failIfMissing>
+          <aggregate>true</aggregate>
+          <strictCheck>true</strictCheck>
+          <properties>
+            <copyright-range>${project.inceptionYear}-2019</copyright-range>
+          </properties>
+        </configuration>
+        <executions>
+          <execution>
+            <id>check-java-headers</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+            <configuration>
+              <header>header-template-java.txt</header>
+              <mapping>
+                <java>DOUBLESLASH_STYLE</java>
+              </mapping>
+              <includes>
+                <include>**/*.java</include>
+              </includes>
             </configuration>
           </execution>
         </executions>
