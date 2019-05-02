@@ -12,6 +12,7 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.util.resource.Resource;
 
+@SuppressWarnings("Duplicates")
 public class DefaultServletMultipleBases
 {
     public static void main(String[] args) throws Exception

@@ -6,6 +6,7 @@ import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.server.handler.ContextHandler;
 import org.eclipse.jetty.server.handler.ContextHandlerCollection;
 
+@SuppressWarnings("Duplicates")
 public class ConnectorSpecificContexts
 {
     public static void main(String[] args) throws Exception

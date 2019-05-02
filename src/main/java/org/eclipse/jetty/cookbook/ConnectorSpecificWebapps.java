@@ -5,6 +5,7 @@ import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.server.handler.HandlerCollection;
 import org.eclipse.jetty.webapp.WebAppContext;
 
+@SuppressWarnings("Duplicates")
 public class ConnectorSpecificWebapps
 {
     public static void main(String[] args) throws Exception

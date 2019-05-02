@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
 import java.util.EnumSet;
-
 import javax.servlet.DispatcherType;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -22,6 +21,7 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.util.resource.Resource;
 
+@SuppressWarnings("Duplicates")
 public class AddFilterMultipleMapping
 {
     public static class DemoFilter implements Filter

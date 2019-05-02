@@ -3,7 +3,6 @@ package org.eclipse.jetty.cookbook.websocket;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
-
 import javax.servlet.ServletException;
 
 import org.eclipse.jetty.cookbook.servlets.TimeServlet;
@@ -19,6 +18,7 @@ import org.eclipse.jetty.websocket.servlet.ServletUpgradeRequest;
 import org.eclipse.jetty.websocket.servlet.ServletUpgradeResponse;
 import org.eclipse.jetty.websocket.servlet.WebSocketCreator;
 
+@SuppressWarnings("Duplicates")
 public class WebSocketServerViaFilter
 {
     public static class TimeSocketCreator implements WebSocketCreator

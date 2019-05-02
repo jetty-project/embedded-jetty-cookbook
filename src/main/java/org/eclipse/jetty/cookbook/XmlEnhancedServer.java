@@ -47,6 +47,7 @@ import org.eclipse.jetty.xml.XmlConfiguration;
  *     adding an HTTPS connector with configuration.
  * </p>
  */
+@SuppressWarnings("Duplicates")
 public class XmlEnhancedServer
 {
     public static void main(String[] args) throws Exception

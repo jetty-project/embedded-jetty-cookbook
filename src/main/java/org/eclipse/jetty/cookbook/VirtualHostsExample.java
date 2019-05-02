@@ -3,7 +3,6 @@ package org.eclipse.jetty.cookbook;
 import java.io.IOException;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +16,7 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.util.IO;
 
+@SuppressWarnings("Duplicates")
 public class VirtualHostsExample
 {
     public static void main(String[] args)

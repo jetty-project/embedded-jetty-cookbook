@@ -1,9 +1,10 @@
 package org.eclipse.jetty.cookbook.websocket;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
 
-import org.eclipse.jetty.cookbook.ServerConnectorHttps;
 import org.eclipse.jetty.server.HttpConfiguration;
 import org.eclipse.jetty.server.HttpConnectionFactory;
 import org.eclipse.jetty.server.SecureRequestCustomizer;
@@ -11,6 +12,7 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.server.SslConnectionFactory;
 import org.eclipse.jetty.servlet.ServletContextHandler;
+import org.eclipse.jetty.util.resource.Resource;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
 import org.eclipse.jetty.websocket.api.WebSocketAdapter;
 import org.eclipse.jetty.websocket.servlet.WebSocketServlet;
@@ -23,6 +25,7 @@ import org.eclipse.jetty.websocket.servlet.WebSocketServletFactory;
  *     as they will reject either connecting to localhost, or reject any self-signed certificate.
  * </p>
  */
+@SuppressWarnings("Duplicates")
 public class SecureWebSocketServer
 {
     public static class EchoSocketServlet extends WebSocketServlet
@@ -56,23 +59,14 @@ public class SecureWebSocketServer
         }
     }
     
-    public static void main(String[] args) throws IOException
+    public static void main(String[] args) throws IOException, URISyntaxException
     {
         Server server = new Server();
         int httpsPort = 8443;
         
-        // Find Keystore
-        ClassLoader cl = ServerConnectorHttps.class.getClassLoader();
-        String keystoreResource = "ssl/keystore";
-        URL f = cl.getResource(keystoreResource);
-        if (f == null)
-        {
-            throw new RuntimeException("Unable to find " + keystoreResource);
-        }
-        
         // Setup SSL
-        SslContextFactory sslContextFactory = new SslContextFactory();
-        sslContextFactory.setKeyStorePath(f.toExternalForm());
+        SslContextFactory sslContextFactory = new SslContextFactory.Server();
+        sslContextFactory.setKeyStoreResource(findKeyStore());
         sslContextFactory.setKeyStorePassword("OBF:1vny1zlo1x8e1vnw1vn61x8g1zlu1vn4");
         sslContextFactory.setKeyManagerPassword("OBF:1u2u1wml1z7s1z7a1wnl1u2g");
         
@@ -108,5 +102,18 @@ public class SecureWebSocketServer
         {
             t.printStackTrace(System.err);
         }
+    }
+
+    private static Resource findKeyStore() throws URISyntaxException, MalformedURLException
+    {
+        ClassLoader cl = SecureWebSocketServer.class.getClassLoader();
+        String keystoreResource = "ssl/keystore";
+        URL f = cl.getResource(keystoreResource);
+        if (f == null)
+        {
+            throw new RuntimeException("Unable to find " + keystoreResource);
+        }
+
+        return Resource.newResource(f.toURI());
     }
 }

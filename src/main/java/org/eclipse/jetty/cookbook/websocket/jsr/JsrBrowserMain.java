@@ -18,12 +18,12 @@
 
 package org.eclipse.jetty.cookbook.websocket.jsr;
 
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
-
 import javax.servlet.ServletException;
 import javax.websocket.DeploymentException;
 
-import org.eclipse.jetty.cookbook.ServerConnectorHttps;
 import org.eclipse.jetty.server.HttpConfiguration;
 import org.eclipse.jetty.server.HttpConnectionFactory;
 import org.eclipse.jetty.server.SecureRequestCustomizer;
@@ -35,6 +35,7 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.util.log.Log;
 import org.eclipse.jetty.util.log.Logger;
+import org.eclipse.jetty.util.resource.Resource;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
 import org.eclipse.jetty.websocket.jsr356.server.ServerContainer;
 import org.eclipse.jetty.websocket.jsr356.server.deploy.WebSocketServerContainerInitializer;
@@ -42,6 +43,7 @@ import org.eclipse.jetty.websocket.jsr356.server.deploy.WebSocketServerContainer
 /**
  * Tool to setup a WebSocket server with some static html/javascript for browsers
  */
+@SuppressWarnings("Duplicates")
 public class JsrBrowserMain
 {
     private static final Logger LOG = Log.getLogger(JsrBrowserMain.class);
@@ -85,25 +87,16 @@ public class JsrBrowserMain
         server.join();
     }
 
-    private void setupServer(int port, int sslPort) throws DeploymentException, ServletException
+    private void setupServer(int port, int sslPort) throws DeploymentException, ServletException, MalformedURLException, URISyntaxException
     {
         server = new Server();
         ServerConnector connector = new ServerConnector(server);
         connector.setPort(port);
         server.addConnector(connector);
         
-        // Find Keystore
-        ClassLoader cl = ServerConnectorHttps.class.getClassLoader();
-        String keystoreResource = "ssl/keystore";
-        URL f = cl.getResource(keystoreResource);
-        if (f == null)
-        {
-            throw new RuntimeException("Unable to find " + keystoreResource);
-        }
-
         // Setup SSL
-        SslContextFactory sslContextFactory = new SslContextFactory();
-        sslContextFactory.setKeyStorePath(f.toExternalForm());
+        SslContextFactory sslContextFactory = new SslContextFactory.Server();
+        sslContextFactory.setKeyStoreResource(findKeyStore());
         sslContextFactory.setKeyStorePassword("OBF:1vny1zlo1x8e1vnw1vn61x8g1zlu1vn4");
         sslContextFactory.setKeyManagerPassword("OBF:1u2u1wml1z7s1z7a1wnl1u2g");
         
@@ -136,5 +129,18 @@ public class JsrBrowserMain
         container.addEndpoint(JsrBrowserSocket.class);
 
         LOG.info("{} setup on (http) port {} and (https) port {}",this.getClass().getName(),port,sslPort);
+    }
+
+    private static Resource findKeyStore() throws URISyntaxException, MalformedURLException
+    {
+        ClassLoader cl = JsrBrowserMain.class.getClassLoader();
+        String keystoreResource = "ssl/keystore";
+        URL f = cl.getResource(keystoreResource);
+        if (f == null)
+        {
+            throw new RuntimeException("Unable to find " + keystoreResource);
+        }
+
+        return Resource.newResource(f.toURI());
     }
 }

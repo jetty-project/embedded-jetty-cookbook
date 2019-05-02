@@ -2,7 +2,6 @@ package org.eclipse.jetty.cookbook;
 
 import java.io.File;
 import java.nio.file.Path;
-
 import javax.websocket.server.ServerContainer;
 
 import org.eclipse.jetty.cookbook.servlets.TimeServlet;
@@ -15,6 +14,7 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.util.resource.PathResource;
 import org.eclipse.jetty.websocket.jsr356.server.deploy.WebSocketServerContainerInitializer;
 
+@SuppressWarnings("Duplicates")
 public class GzipResponsesExample
 {
     public static void main(String[] args) throws Exception
