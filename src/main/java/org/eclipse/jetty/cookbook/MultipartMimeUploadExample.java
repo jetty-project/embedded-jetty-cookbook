@@ -258,7 +258,7 @@ public class MultipartMimeUploadExample
             }
 
             // Ensure request knows about MultiPartConfigElement setup.
-            request.setAttribute(Request.__MULTIPART_CONFIG_ELEMENT, multipartConfig);
+            request.setAttribute(Request.MULTIPART_CONFIG_ELEMENT, multipartConfig);
             // Process the request
             processParts(request, response, outputDir);
             baseRequest.setHandled(true);
