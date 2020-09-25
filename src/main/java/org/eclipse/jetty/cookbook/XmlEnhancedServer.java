@@ -43,26 +43,26 @@ import org.eclipse.jetty.xml.XmlConfiguration;
  * This is a Server setup in a default way, but is can be enhanced by providing
  * (0 to n) Jetty XML file arguments on the command line.
  * <p>
- *     Run without a command line argument and pay attention to the contextPath for the
- *     default Context. (It should be {@code "/"})
- *     <br/>
- *     Now run with {@code src/test/resources/xml-enhanced/adjust-default-contextpath.xml} and see
- *     that the context path is now {@code "/foobar"}
+ * Run without a command line argument and pay attention to the contextPath for the
+ * default Context. (It should be {@code "/"})
+ * <br>
+ * Now run with {@code src/test/resources/xml-enhanced/adjust-default-contextpath.xml} and see
+ * that the context path is now {@code "/foobar"}
  * </p>
  * <p>
- *     Run with {@code src/test/resources/xml-enhanced/configure-http.xml} and you will be
- *     adjusting the {@link HttpConfiguration} parameters in use.
+ * Run with {@code src/test/resources/xml-enhanced/configure-http.xml} and you will be
+ * adjusting the {@link HttpConfiguration} parameters in use.
  * </p>
  * <p>
- *     Run with {@code src/test/resources/xml-enhanced/add-rewrites.xml} and you will be
- *     adjusting adding rewrite rules to the existing handler tree.
- *     <br/>
- *     Request {@code http://localhost:8080/bar/blah} and you will receive a 302 redirect
- *     to {@code http://localhost:8080/foo}
+ * Run with {@code src/test/resources/xml-enhanced/add-rewrites.xml} and you will be
+ * adjusting adding rewrite rules to the existing handler tree.
+ * <br>
+ * Request {@code http://localhost:8080/bar/blah} and you will receive a 302 redirect
+ * to {@code http://localhost:8080/foo}
  * </p>
  * <p>
- *     Run with {@code src/test/resources/xml-enhanced/add-https.xml} and you will be
- *     adding an HTTPS connector with configuration.
+ * Run with {@code src/test/resources/xml-enhanced/add-https.xml} and you will be
+ * adding an HTTPS connector with configuration.
  * </p>
  */
 @SuppressWarnings("Duplicates")
