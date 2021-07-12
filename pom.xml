@@ -7,7 +7,7 @@
   <packaging>jar</packaging>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <jetty-version>9.4.40.v20210413</jetty-version>
+    <jetty-version>9.4.43.v20210629</jetty-version>
   </properties>
   <inceptionYear>1995</inceptionYear>
   <dependencies>
