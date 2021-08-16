@@ -24,7 +24,7 @@ import org.eclipse.jetty.server.handler.gzip.GzipHandler;
 import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.util.resource.PathResource;
-import org.eclipse.jetty.websocket.javax.server.config.JavaxWebSocketServletContainerInitializer;
+import org.eclipse.jetty.websocket.jakarta.server.config.JakartaWebSocketServletContainerInitializer;
 
 @SuppressWarnings("Duplicates")
 public class GzipResponsesExample
@@ -52,7 +52,7 @@ public class GzipResponsesExample
         contextHandler.setWelcomeFiles(new String[]{"index.html"});
 
         // Adding WebSockets
-        JavaxWebSocketServletContainerInitializer.configure(contextHandler, (context, wsContainer) ->
+        JakartaWebSocketServletContainerInitializer.configure(contextHandler, (context, wsContainer) ->
             wsContainer.addEndpoint(TimeSocket.class));
 
         // Adding Servlets

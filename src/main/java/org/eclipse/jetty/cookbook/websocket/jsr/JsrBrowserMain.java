@@ -30,7 +30,7 @@ import org.eclipse.jetty.util.log.Log;
 import org.eclipse.jetty.util.log.Logger;
 import org.eclipse.jetty.util.resource.Resource;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
-import org.eclipse.jetty.websocket.javax.server.config.JavaxWebSocketServletContainerInitializer;
+import org.eclipse.jetty.websocket.jakarta.server.config.JakartaWebSocketServletContainerInitializer;
 
 /**
  * Tool to setup a WebSocket server with some static html/javascript for browsers
@@ -117,7 +117,7 @@ public class JsrBrowserMain
         holder.setInitParameter("dirAllowed", "true");
         server.setHandler(contextHandler);
 
-        JavaxWebSocketServletContainerInitializer.configure(contextHandler, (context, wsContainer) ->
+        JakartaWebSocketServletContainerInitializer.configure(contextHandler, (context, wsContainer) ->
             wsContainer.addEndpoint(JsrBrowserSocket.class));
 
         LOG.info("{} setup on (http) port {} and (https) port {}", this.getClass().getName(), port, sslPort);

@@ -17,8 +17,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.time.Duration;
-import javax.servlet.ServletException;
 
+import jakarta.servlet.ServletException;
 import org.eclipse.jetty.cookbook.servlets.TimeServlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
