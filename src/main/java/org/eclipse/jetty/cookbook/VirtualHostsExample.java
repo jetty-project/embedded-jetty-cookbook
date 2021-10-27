@@ -78,7 +78,7 @@ public class VirtualHostsExample
 
     private void testRequest(String host, String path)
     {
-        try (Socket client = new Socket("localhost", 8080);)
+        try (Socket client = new Socket("localhost", 8080))
         {
             System.out.printf("%n-- testRequest [%s] [%s] --%n", host, path);
             String req = String.format("GET %s HTTP/1.1\r\nHost: %s\r\nConnection: close\r\n\r\n", path, host);

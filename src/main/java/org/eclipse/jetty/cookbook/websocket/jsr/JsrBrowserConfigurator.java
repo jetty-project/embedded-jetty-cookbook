@@ -27,15 +27,15 @@ public class JsrBrowserConfigurator extends ServerEndpointConfig.Configurator
     @Override
     public void modifyHandshake(ServerEndpointConfig sec, HandshakeRequest request, HandshakeResponse response)
     {
-        super.modifyHandshake(sec,request,response);
-        sec.getUserProperties().put("userAgent",getHeaderValue(request,"User-Agent"));
-        sec.getUserProperties().put("requestedExtensions",getHeaderValue(request,"Sec-WebSocket-Extensions"));
+        super.modifyHandshake(sec, request, response);
+        sec.getUserProperties().put("userAgent", getHeaderValue(request, "User-Agent"));
+        sec.getUserProperties().put("requestedExtensions", getHeaderValue(request, "Sec-WebSocket-Extensions"));
     }
 
     private String getHeaderValue(HandshakeRequest request, String key)
     {
         List<String> value = request.getHeaders().get(key);
-        return QuoteUtil.join(value,",");
+        return QuoteUtil.join(value, ",");
     }
 
     @Override

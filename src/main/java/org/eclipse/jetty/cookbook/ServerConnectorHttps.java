@@ -27,7 +27,6 @@ import org.eclipse.jetty.server.SslConnectionFactory;
 import org.eclipse.jetty.util.resource.Resource;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
 
-@SuppressWarnings("Duplicates")
 public class ServerConnectorHttps
 {
     public static void main(String[] args) throws Exception
@@ -49,8 +48,8 @@ public class ServerConnectorHttps
 
         // Establish the ServerConnector
         ServerConnector httpsConnector = new ServerConnector(server,
-                new SslConnectionFactory(sslContextFactory, "http/1.1"),
-                new HttpConnectionFactory(httpsConf));
+            new SslConnectionFactory(sslContextFactory, "http/1.1"),
+            new HttpConnectionFactory(httpsConf));
         httpsConnector.setPort(httpsPort);
 
         server.addConnector(httpsConnector);

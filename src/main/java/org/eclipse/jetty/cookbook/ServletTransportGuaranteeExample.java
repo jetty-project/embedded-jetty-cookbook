@@ -33,7 +33,6 @@ import org.eclipse.jetty.util.resource.Resource;
 import org.eclipse.jetty.util.security.Constraint;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
 
-@SuppressWarnings("Duplicates")
 public class ServletTransportGuaranteeExample
 {
     public static void main(String[] args) throws Exception
@@ -41,24 +40,24 @@ public class ServletTransportGuaranteeExample
         Server server = new Server();
         int httpPort = 8080;
         int httpsPort = 8443;
-        
+
         // Setup HTTP Connector
         HttpConfiguration httpConf = new HttpConfiguration();
         httpConf.setSecurePort(httpsPort);
         httpConf.setSecureScheme("https");
-        
+
         // Establish the HTTP ServerConnector
         ServerConnector httpConnector = new ServerConnector(server,
-                new HttpConnectionFactory(httpConf));
+            new HttpConnectionFactory(httpConf));
         httpConnector.setPort(httpPort);
         server.addConnector(httpConnector);
-        
+
         // Setup SSL
         SslContextFactory sslContextFactory = new SslContextFactory.Server();
         sslContextFactory.setKeyStoreResource(findKeyStore());
         sslContextFactory.setKeyStorePassword("OBF:1vny1zlo1x8e1vnw1vn61x8g1zlu1vn4");
         sslContextFactory.setKeyManagerPassword("OBF:1u2u1wml1z7s1z7a1wnl1u2g");
-        
+
         // Setup HTTPS Configuration
         HttpConfiguration httpsConf = new HttpConfiguration();
         httpsConf.setSecurePort(httpsPort);
@@ -67,16 +66,16 @@ public class ServletTransportGuaranteeExample
 
         // Establish the HTTPS ServerConnector
         ServerConnector httpsConnector = new ServerConnector(server,
-                new SslConnectionFactory(sslContextFactory,"http/1.1"),
-                new HttpConnectionFactory(httpsConf));
+            new SslConnectionFactory(sslContextFactory, "http/1.1"),
+            new HttpConnectionFactory(httpsConf));
         httpsConnector.setPort(httpsPort);
-        
+
         server.addConnector(httpsConnector);
 
         // Add a Handler for requests
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SECURITY);
         context.setContextPath("/");
-        
+
         // Setup security constraint
         SecurityHandler security = context.getSecurityHandler();
         if (security instanceof ConstraintAware)
@@ -93,11 +92,11 @@ public class ServletTransportGuaranteeExample
         {
             throw new RuntimeException("Not a ConstraintAware SecurityHandler: " + security);
         }
-        
+
         // Add servlet to produce output
-        ServletHolder helloHolder = context.addServlet(HelloServlet.class,"/*");
-        helloHolder.setInitParameter("message","Hello Secure Servlet World");
-        
+        ServletHolder helloHolder = context.addServlet(HelloServlet.class, "/*");
+        helloHolder.setInitParameter("message", "Hello Secure Servlet World");
+
         server.setHandler(context);
 
         server.start();

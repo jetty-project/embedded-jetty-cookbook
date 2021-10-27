@@ -31,7 +31,6 @@ import org.eclipse.jetty.websocket.servlet.ServletUpgradeRequest;
 import org.eclipse.jetty.websocket.servlet.ServletUpgradeResponse;
 import org.eclipse.jetty.websocket.servlet.WebSocketCreator;
 
-@SuppressWarnings("Duplicates")
 public class WebSocketServerViaFilter
 {
     public static class TimeSocketCreator implements WebSocketCreator
@@ -49,7 +48,7 @@ public class WebSocketServerViaFilter
         ServerConnector connector = new ServerConnector(server);
         connector.setPort(8080);
         server.addConnector(connector);
-        
+
         // The location of the webapp base resource (for resources and static file serving)
         Path webRootPath = new File("webapps/static-root/").toPath().toRealPath();
 
@@ -58,7 +57,7 @@ public class WebSocketServerViaFilter
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
         context.setContextPath("/");
         context.setBaseResource(new PathResource(webRootPath));
-        context.setWelcomeFiles(new String[] { "index.html" });
+        context.setWelcomeFiles(new String[]{"index.html"});
         server.setHandler(context);
 
         // Add the websocket filter
@@ -66,15 +65,15 @@ public class WebSocketServerViaFilter
         // Configure websocket behavior
         wsfilter.getFactory().getPolicy().setIdleTimeout(5000);
         // Add websocket mapping
-        wsfilter.addMapping(new ServletPathSpec("/time/"),new TimeSocketCreator());
-        
+        wsfilter.addMapping(new ServletPathSpec("/time/"), new TimeSocketCreator());
+
         // Add time servlet
-        context.addServlet(TimeServlet.class,"/time/");
+        context.addServlet(TimeServlet.class, "/time/");
 
         // Add default servlet
-        ServletHolder holderDefault = new ServletHolder("default",DefaultServlet.class);
-        holderDefault.setInitParameter("dirAllowed","true");
-        context.addServlet(holderDefault,"/");
+        ServletHolder holderDefault = new ServletHolder("default", DefaultServlet.class);
+        holderDefault.setInitParameter("dirAllowed", "true");
+        context.addServlet(holderDefault, "/");
 
         try
         {

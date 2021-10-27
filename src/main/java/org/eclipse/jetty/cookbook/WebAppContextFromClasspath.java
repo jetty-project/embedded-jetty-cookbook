@@ -19,13 +19,12 @@ import java.net.URL;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
 
-@SuppressWarnings("Duplicates")
 public class WebAppContextFromClasspath
 {
     public static void main(String[] args) throws Exception
     {
         Server server = new Server(8080);
-        
+
         // Figure out what path to serve content from
         ClassLoader cl = WebAppContextFromClasspath.class.getClassLoader();
         // We look for a file, as ClassLoader.getResource() is not
@@ -39,7 +38,6 @@ public class WebAppContextFromClasspath
         // Resolve file to directory
         URI webRootUri = f.toURI().resolve("./").normalize();
         System.err.println("WebRoot is " + webRootUri);
-
 
         WebAppContext webapp = new WebAppContext();
         webapp.setContextPath("/");

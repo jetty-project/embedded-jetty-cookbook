@@ -199,7 +199,7 @@ public class MultipartMimeUploadExample
                      OutputStream outputStream = Files.newOutputStream(outputFile, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING))
                 {
                     IO.copy(inputStream, outputStream);
-                    out.printf("Saved Part[%s] to %s%n", part.getName(), outputFile.toString());
+                    out.printf("Saved Part[%s] to %s%n", part.getName(), outputFile);
                 }
             }
         }

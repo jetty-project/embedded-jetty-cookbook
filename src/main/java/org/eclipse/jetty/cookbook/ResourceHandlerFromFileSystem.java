@@ -20,7 +20,6 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.util.resource.PathResource;
 
-@SuppressWarnings("Duplicates")
 public class ResourceHandlerFromFileSystem
 {
     public static void main(String[] args) throws Exception
@@ -28,7 +27,7 @@ public class ResourceHandlerFromFileSystem
         Server server = new Server(8080);
 
         Path webRootPath = new File("webapps/static-root/").toPath().toRealPath();
-        
+
         System.err.println("WebRoot is " + webRootPath);
 
         ResourceHandler handler = new ResourceHandler();

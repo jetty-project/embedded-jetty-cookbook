@@ -38,7 +38,6 @@ import org.eclipse.jetty.websocket.jsr356.server.deploy.WebSocketServerContainer
 /**
  * Tool to setup a WebSocket server with some static html/javascript for browsers
  */
-@SuppressWarnings("Duplicates")
 public class JsrBrowserMain
 {
     private static final Logger LOG = Log.getLogger(JsrBrowserMain.class);
@@ -64,7 +63,7 @@ public class JsrBrowserMain
         try
         {
             JsrBrowserMain tool = new JsrBrowserMain();
-            tool.setupServer(port,sslPort);
+            tool.setupServer(port, sslPort);
             tool.runForever();
         }
         catch (Throwable t)
@@ -88,13 +87,13 @@ public class JsrBrowserMain
         ServerConnector connector = new ServerConnector(server);
         connector.setPort(port);
         server.addConnector(connector);
-        
+
         // Setup SSL
         SslContextFactory sslContextFactory = new SslContextFactory.Server();
         sslContextFactory.setKeyStoreResource(findKeyStore());
         sslContextFactory.setKeyStorePassword("OBF:1vny1zlo1x8e1vnw1vn61x8g1zlu1vn4");
         sslContextFactory.setKeyManagerPassword("OBF:1u2u1wml1z7s1z7a1wnl1u2g");
-        
+
         // Setup HTTPS Configuration
         HttpConfiguration httpsConf = new HttpConfiguration();
         httpsConf.setSecurePort(sslPort);
@@ -103,27 +102,27 @@ public class JsrBrowserMain
 
         // Establish the ServerConnector
         ServerConnector httpsConnector = new ServerConnector(server,
-                new SslConnectionFactory(sslContextFactory,"http/1.1"),
-                new HttpConnectionFactory(httpsConf));
+            new SslConnectionFactory(sslContextFactory, "http/1.1"),
+            new HttpConnectionFactory(httpsConf));
         httpsConnector.setPort(sslPort);
-        
+
         server.addConnector(httpsConnector);
-        
+
         // Setup ServletContext
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
         context.setContextPath("/");
-        ServletHolder holder = context.addServlet(DefaultServlet.class,"/");
-        
+        ServletHolder holder = context.addServlet(DefaultServlet.class, "/");
+
         // TODO: figure out resource base better
-        
-        holder.setInitParameter("resourceBase","src/main/resources/websocket-statics");
-        holder.setInitParameter("dirAllowed","true");
+
+        holder.setInitParameter("resourceBase", "src/main/resources/websocket-statics");
+        holder.setInitParameter("dirAllowed", "true");
         server.setHandler(context);
 
         ServerContainer container = WebSocketServerContainerInitializer.configureContext(context);
         container.addEndpoint(JsrBrowserSocket.class);
 
-        LOG.info("{} setup on (http) port {} and (https) port {}",this.getClass().getName(),port,sslPort);
+        LOG.info("{} setup on (http) port {} and (https) port {}", this.getClass().getName(), port, sslPort);
     }
 
     private static Resource findKeyStore() throws URISyntaxException, MalformedURLException
