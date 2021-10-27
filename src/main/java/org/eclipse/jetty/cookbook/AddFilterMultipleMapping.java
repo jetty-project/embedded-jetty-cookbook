@@ -39,7 +39,7 @@ public class AddFilterMultipleMapping
     public static class DemoFilter implements Filter
     {
         @Override
-        public void init(FilterConfig filterConfig) throws ServletException
+        public void init(FilterConfig filterConfig)
         {
         }
 
