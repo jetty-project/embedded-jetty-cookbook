@@ -71,6 +71,11 @@
       <artifactId>jetty-xml</artifactId>
       <version>${jetty.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-slf4j-impl</artifactId>
+      <version>${jetty.version}</version>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
