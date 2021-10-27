@@ -77,7 +77,7 @@ public class FormRestrictionsExample
         server = new Server();
 
         HttpConfiguration httpConfig = new HttpConfiguration();
-        httpConfig.setFormEncodedMethods("POST"); // only POST is supported for request.getParameter calls that deal with request body content
+        httpConfig.setFormEncodedMethods("POST");
 
         ServerConnector connector = new ServerConnector(server, new HttpConnectionFactory(httpConfig));
         connector.setPort(port);
