@@ -26,9 +26,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.eclipse.jetty.client.HttpClient;
 import org.eclipse.jetty.client.api.ContentResponse;
 import org.eclipse.jetty.client.api.Request;
-import org.eclipse.jetty.client.util.FormContentProvider;
-import org.eclipse.jetty.client.util.MultiPartContentProvider;
-import org.eclipse.jetty.client.util.StringContentProvider;
+import org.eclipse.jetty.client.util.FormRequestContent;
+import org.eclipse.jetty.client.util.MultiPartRequestContent;
+import org.eclipse.jetty.client.util.StringRequestContent;
 import org.eclipse.jetty.http.HttpStatus;
 import org.eclipse.jetty.server.HttpConfiguration;
 import org.eclipse.jetty.server.HttpConnectionFactory;
@@ -77,7 +77,7 @@ public class FormRestrictionsExample
         server = new Server();
 
         HttpConfiguration httpConfig = new HttpConfiguration();
-        httpConfig.setFormEncodedMethods("POST"); // only POST is supported for request.getParameter calls that deal with request body content
+        httpConfig.setFormEncodedMethods("POST");
 
         ServerConnector connector = new ServerConnector(server, new HttpConnectionFactory(httpConfig));
         connector.setPort(port);
@@ -111,7 +111,7 @@ public class FormRestrictionsExample
 
     public void submitVariousForms(HttpClient client, URI uri)
     {
-        for (String httpMethod : Arrays.asList("GET", "POST", "PATCH"))
+        for (String httpMethod : Arrays.asList("GET", "POST", "PUT"))
         {
             submitForm(httpMethod + " with Query Params Only",
                 client.newRequest(uri)
@@ -124,16 +124,16 @@ public class FormRestrictionsExample
             submitForm(httpMethod + " with application/x-www-form-urlencoded",
                 client.newRequest(uri)
                     .method(httpMethod)
-                    .content(new FormContentProvider(wwwForm)));
+                    .body(new FormRequestContent(wwwForm)));
 
-            MultiPartContentProvider multipartForm = new MultiPartContentProvider();
-            multipartForm.addFieldPart("UserName", new StringContentProvider("Andrés Dorantes de Carranza"), null);
+            MultiPartRequestContent multipartForm = new MultiPartRequestContent();
+            multipartForm.addFieldPart("UserName", new StringRequestContent("Andrés Dorantes de Carranza"), null);
             multipartForm.close();
 
             submitForm(httpMethod + " with multipart/form-data",
                 client.newRequest(uri)
                     .method(httpMethod)
-                    .content(multipartForm));
+                    .body(multipartForm));
         }
     }
 
@@ -141,7 +141,7 @@ public class FormRestrictionsExample
     {
         try
         {
-            ContentResponse response = request.header("Accept", "text/plain").send();
+            ContentResponse response = request.headers((h) -> h.add("Accept", "text/plain")).send();
             if (response.getStatus() == HttpStatus.OK_200)
             {
                 System.out.printf("%-17s - %-44s -> OK: %s%n", request.getPath(), description, response.getContentAsString().trim());
