@@ -34,7 +34,6 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.util.resource.Resource;
 
-@SuppressWarnings("Duplicates")
 public class AddFilterMultipleMapping
 {
     public static class DemoFilter implements Filter
@@ -49,9 +48,9 @@ public class AddFilterMultipleMapping
         {
             if (response instanceof HttpServletResponse)
             {
-                ((HttpServletResponse)response).addHeader("X-Demo","was-filtered");
+                ((HttpServletResponse)response).addHeader("X-Demo", "was-filtered");
             }
-            chain.doFilter(request,response);
+            chain.doFilter(request, response);
         }
 
         @Override
@@ -91,14 +90,14 @@ public class AddFilterMultipleMapping
         EnumSet<DispatcherType> dispatches = EnumSet.allOf(DispatcherType.class);
         FilterHolder holder = new FilterHolder(DemoFilter.class);
         holder.setName("demo");
-        context.addFilter(holder,"/demo/*",dispatches);
-        context.addFilter(holder,"*.demo",dispatches);
+        context.addFilter(holder, "/demo/*", dispatches);
+        context.addFilter(holder, "*.demo", dispatches);
 
         // Lastly, the default servlet for root content (always needed, to satisfy servlet spec)
         // It is important that this is last.
-        ServletHolder holderDef = new ServletHolder("default",DefaultServlet.class);
-        holderDef.setInitParameter("dirAllowed","true");
-        context.addServlet(holderDef,"/");
+        ServletHolder holderDef = new ServletHolder("default", DefaultServlet.class);
+        holderDef.setInitParameter("dirAllowed", "true");
+        context.addServlet(holderDef, "/");
 
         server.start();
         server.join();

@@ -60,7 +60,7 @@ import org.eclipse.jetty.xml.XmlConfiguration;
  * adding an HTTPS connector with configuration.
  * </p>
  */
-@SuppressWarnings("Duplicates")
+
 public class XmlEnhancedServer
 {
     public static void main(String[] args) throws Exception
@@ -117,7 +117,7 @@ public class XmlEnhancedServer
             idMap.put("DefaultHandler", defaultHandler);
 
             // Map some well known properties
-            Map<String,String> globalProps = new HashMap<>();
+            Map<String, String> globalProps = new HashMap<>();
             URI resourcesUriBase = webRootUri.resolve("..");
             System.err.println("ResourcesUriBase is " + resourcesUriBase);
             globalProps.put("resources.location", resourcesUriBase.toASCIIString());
@@ -139,7 +139,7 @@ public class XmlEnhancedServer
             }
 
             // Dump what was configured
-            for(Object configuredObject: configuredObjects)
+            for (Object configuredObject : configuredObjects)
             {
                 System.err.printf("Configured (%s)%n", configuredObject.getClass().getName());
             }

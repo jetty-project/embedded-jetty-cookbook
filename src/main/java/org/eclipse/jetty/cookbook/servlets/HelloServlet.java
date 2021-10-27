@@ -20,7 +20,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@SuppressWarnings("serial")
 public class HelloServlet extends HttpServlet
 {
     private String msg;
@@ -41,6 +40,6 @@ public class HelloServlet extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         response.setContentType("text/plain");
-        response.getWriter().printf("%s%n",msg);
+        response.getWriter().printf("%s%n", msg);
     }
 }

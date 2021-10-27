@@ -19,7 +19,6 @@ import java.nio.file.Path;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
 
-@SuppressWarnings("Duplicates")
 public class WebAppContextFromFileSystem
 {
     public static void main(String[] args) throws Exception

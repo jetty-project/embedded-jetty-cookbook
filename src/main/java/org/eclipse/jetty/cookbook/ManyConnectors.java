@@ -32,7 +32,7 @@ import org.eclipse.jetty.util.ssl.SslContextFactory;
 /**
  * A Jetty server with multiple connectors.
  */
-@SuppressWarnings("Duplicates")
+
 public class ManyConnectors
 {
     public static void main(String[] args) throws Exception
@@ -65,7 +65,7 @@ public class ManyConnectors
         // the output buffer size, etc. We also set the port (8080) and
         // configure an idle timeout.
         ServerConnector http = new ServerConnector(server,
-                new HttpConnectionFactory(http_config));
+            new HttpConnectionFactory(http_config));
         http.setPort(8080);
         http.setIdleTimeout(30000);
 
@@ -99,8 +99,8 @@ public class ManyConnectors
         // we just made along with the previously created ssl context factory.
         // Next we set the port and a longer idle timeout.
         ServerConnector https = new ServerConnector(server,
-                new SslConnectionFactory(sslContextFactory, HttpVersion.HTTP_1_1.asString()),
-                new HttpConnectionFactory(https_config));
+            new SslConnectionFactory(sslContextFactory, HttpVersion.HTTP_1_1.asString()),
+            new HttpConnectionFactory(https_config));
         https.setPort(8443);
         https.setIdleTimeout(500000);
 

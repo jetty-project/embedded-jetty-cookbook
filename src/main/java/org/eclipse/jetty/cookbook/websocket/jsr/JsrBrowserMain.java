@@ -35,7 +35,7 @@ import org.eclipse.jetty.websocket.javax.server.config.JavaxWebSocketServletCont
 /**
  * Tool to setup a WebSocket server with some static html/javascript for browsers
  */
-@SuppressWarnings("Duplicates")
+
 public class JsrBrowserMain
 {
     private static final Logger LOG = Log.getLogger(JsrBrowserMain.class);
