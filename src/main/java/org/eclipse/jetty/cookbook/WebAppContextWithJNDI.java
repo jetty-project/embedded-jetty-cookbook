@@ -41,11 +41,11 @@ import org.eclipse.jetty.webapp.Configuration;
 import org.eclipse.jetty.webapp.FragmentConfiguration;
 import org.eclipse.jetty.webapp.WebAppContext;
 
-public class WebAppWithJNDIExample
+public class WebAppContextWithJNDI
 {
     public static void main(String[] args) throws Exception
     {
-        WebAppWithJNDIExample example = new WebAppWithJNDIExample();
+        WebAppContextWithJNDI example = new WebAppContextWithJNDI();
         try
         {
             example.startServer(8080);
