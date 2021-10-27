@@ -111,7 +111,7 @@ public class FormRestrictionsExample
 
     public void submitVariousForms(HttpClient client, URI uri)
     {
-        for (String httpMethod : Arrays.asList("GET", "POST", "PATCH"))
+        for (String httpMethod : Arrays.asList("GET", "POST", "PUT"))
         {
             submitForm(httpMethod + " with Query Params Only",
                 client.newRequest(uri)
