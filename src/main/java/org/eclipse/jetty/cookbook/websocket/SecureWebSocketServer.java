@@ -38,7 +38,7 @@ import org.eclipse.jetty.websocket.server.JettyWebSocketServletFactory;
  * as they will reject either connecting to localhost, or reject any self-signed certificate.
  * </p>
  */
-@SuppressWarnings("Duplicates")
+
 public class SecureWebSocketServer
 {
     public static class EchoSocketServlet extends JettyWebSocketServlet

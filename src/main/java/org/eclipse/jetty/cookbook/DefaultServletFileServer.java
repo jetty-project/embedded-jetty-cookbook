@@ -23,7 +23,6 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.util.resource.Resource;
 
-@SuppressWarnings("Duplicates")
 public class DefaultServletFileServer
 {
     public static void main(String[] args) throws Exception
@@ -52,9 +51,9 @@ public class DefaultServletFileServer
         context.setBaseResource(Resource.newResource(webRootUri));
         server.setHandler(context);
 
-        ServletHolder holderPwd = new ServletHolder("default",DefaultServlet.class);
-        holderPwd.setInitParameter("dirAllowed","true");
-        context.addServlet(holderPwd,"/");
+        ServletHolder holderPwd = new ServletHolder("default", DefaultServlet.class);
+        holderPwd.setInitParameter("dirAllowed", "true");
+        context.addServlet(holderPwd, "/");
 
         server.start();
         server.join();

@@ -22,6 +22,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -192,14 +193,14 @@ public class MultipartMimeUploadExample
             if (StringUtil.isNotBlank(filename))
             {
                 // ensure we don't have "/" and ".." in the raw form.
-                filename = URLEncoder.encode(filename, "utf-8");
+                filename = URLEncoder.encode(filename, StandardCharsets.UTF_8);
 
                 Path outputFile = outputDir.resolve(filename);
                 try (InputStream inputStream = part.getInputStream();
                      OutputStream outputStream = Files.newOutputStream(outputFile, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING))
                 {
                     IO.copy(inputStream, outputStream);
-                    out.printf("Saved Part[%s] to %s%n", part.getName(), outputFile.toString());
+                    out.printf("Saved Part[%s] to %s%n", part.getName(), outputFile);
                 }
             }
         }

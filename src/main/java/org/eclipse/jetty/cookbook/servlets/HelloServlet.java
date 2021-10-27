@@ -21,7 +21,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@SuppressWarnings("serial")
 public class HelloServlet extends HttpServlet
 {
     private String msg;
@@ -42,6 +41,6 @@ public class HelloServlet extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         response.setContentType("text/plain");
-        response.getWriter().printf("%s%n",msg);
+        response.getWriter().printf("%s%n", msg);
     }
 }

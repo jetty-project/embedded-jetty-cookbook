@@ -31,7 +31,6 @@ import org.eclipse.jetty.websocket.server.JettyServerUpgradeResponse;
 import org.eclipse.jetty.websocket.server.JettyWebSocketCreator;
 import org.eclipse.jetty.websocket.server.config.JettyWebSocketServletContainerInitializer;
 
-@SuppressWarnings("Duplicates")
 public class WebSocketServerViaFilter
 {
     public static class TimeSocketCreator implements JettyWebSocketCreator

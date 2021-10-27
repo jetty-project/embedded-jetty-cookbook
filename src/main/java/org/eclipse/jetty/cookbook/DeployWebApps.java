@@ -32,7 +32,6 @@ import org.eclipse.jetty.server.handler.ContextHandlerCollection;
 import org.eclipse.jetty.server.handler.DefaultHandler;
 import org.eclipse.jetty.server.handler.HandlerCollection;
 
-@SuppressWarnings("Duplicates")
 public class DeployWebApps
 {
     public static void main(String[] args) throws Exception

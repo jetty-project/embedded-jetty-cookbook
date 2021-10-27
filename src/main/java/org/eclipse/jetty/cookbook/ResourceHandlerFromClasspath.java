@@ -20,7 +20,6 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.util.resource.Resource;
 
-@SuppressWarnings("Duplicates")
 public class ResourceHandlerFromClasspath
 {
     public static void main(String[] args) throws Exception

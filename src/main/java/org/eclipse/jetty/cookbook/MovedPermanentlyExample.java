@@ -31,14 +31,13 @@ import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.util.resource.PathResource;
 
-@SuppressWarnings("Duplicates")
 public class MovedPermanentlyExample
 {
     public static class MovedPermanentlyRule extends Rule
     {
         private Pattern regex;
         private String replacement;
-        
+
         public MovedPermanentlyRule()
         {
             setTerminating(true);
@@ -62,7 +61,7 @@ public class MovedPermanentlyExample
             if (matches)
             {
                 String location = response.encodeRedirectURL(replacement);
-                response.setHeader("Location",RedirectUtil.toRedirectURL(request,location));
+                response.setHeader("Location", RedirectUtil.toRedirectURL(request, location));
                 response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
                 response.getOutputStream().flush(); // no output / content
                 response.getOutputStream().close();
@@ -112,8 +111,8 @@ public class MovedPermanentlyExample
         handlers.addHandler(context);
         context.setContextPath("/");
         context.setBaseResource(new PathResource(webRootPath));
-        context.setWelcomeFiles(new String[] { "index.html" });
-        context.addServlet(DumpServlet.class,"/dump/*");
+        context.setWelcomeFiles(new String[]{"index.html"});
+        context.addServlet(DumpServlet.class, "/dump/*");
 
         server.start();
         server.join();

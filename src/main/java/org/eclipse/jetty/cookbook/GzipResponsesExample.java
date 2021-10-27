@@ -26,7 +26,6 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.util.resource.PathResource;
 import org.eclipse.jetty.websocket.jakarta.server.config.JakartaWebSocketServletContainerInitializer;
 
-@SuppressWarnings("Duplicates")
 public class GzipResponsesExample
 {
     public static void main(String[] args) throws Exception

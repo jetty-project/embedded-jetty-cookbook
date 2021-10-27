@@ -34,7 +34,7 @@ public class HelloHandler extends AbstractHandler
     public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
     {
         response.setContentType("text/plain");
-        response.getWriter().printf("%s%n",msg);
+        response.getWriter().printf("%s%n", msg);
         baseRequest.setHandled(true);
     }
 }
