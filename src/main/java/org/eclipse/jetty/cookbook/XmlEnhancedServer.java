@@ -13,12 +13,11 @@
 
 package org.eclipse.jetty.cookbook;
 
-import java.io.File;
 import java.net.URI;
 import java.net.URL;
-import java.util.ArrayList;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.eclipse.jetty.server.HttpConfiguration;
@@ -31,6 +30,7 @@ import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
+import org.eclipse.jetty.util.resource.PathResource;
 import org.eclipse.jetty.util.resource.Resource;
 import org.eclipse.jetty.xml.XmlConfiguration;
 
@@ -121,26 +121,19 @@ public class XmlEnhancedServer
             System.err.println("ResourcesUriBase is " + resourcesUriBase);
             globalProps.put("resources.location", resourcesUriBase.toASCIIString());
 
-            List<Object> configuredObjects = new ArrayList<>();
             XmlConfiguration lastConfig = null;
             for (String xml : args)
             {
-                URL url = new File(xml).toURI().toURL();
-                System.err.println("Applying XML: " + url);
-                XmlConfiguration configuration = new XmlConfiguration(url);
+                Path xmlPath = Paths.get(xml);
+                System.err.println("Applying XML: " + xmlPath);
+                PathResource xmlResource = new PathResource(xmlPath);
+                XmlConfiguration configuration = new XmlConfiguration(xmlResource);
                 if (lastConfig != null)
                     configuration.getIdMap().putAll(lastConfig.getIdMap());
                 configuration.getProperties().putAll(globalProps);
                 configuration.getIdMap().putAll(idMap);
                 idMap.putAll(configuration.getIdMap());
-                configuredObjects.add(configuration.configure());
                 lastConfig = configuration;
-            }
-
-            // Dump what was configured
-            for (Object configuredObject : configuredObjects)
-            {
-                System.err.printf("Configured (%s)%n", configuredObject.getClass().getName());
             }
 
             // Dump the resulting idMap
