@@ -23,7 +23,7 @@
     <maven.install.plugin.version>3.0.0-M1</maven.install.plugin.version>
     <maven.deploy.plugin.version>3.0.0-M1</maven.deploy.plugin.version>
     <maven.exec.plugin.version>3.0.0</maven.exec.plugin.version>
-    <license.plugin.version>4.1</license.plugin.version>
+    <license.plugin.version>4.2.rc3</license.plugin.version>
 
     <slf4j.version>1.7.31</slf4j.version>
     <servlet.version>3.1.0</servlet.version>
@@ -133,11 +133,32 @@
           <failIfMissing>true</failIfMissing>
           <aggregate>true</aggregate>
           <strictCheck>true</strictCheck>
-          <properties>
-            <copyright-range>${project.inceptionYear}-2021</copyright-range>
-          </properties>
         </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>com.mycila</groupId>
+            <artifactId>license-maven-plugin-git</artifactId>
+            <version>${license.plugin.version}</version>
+          </dependency>
+        </dependencies>
         <executions>
+          <execution>
+            <id>check-java-headers</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>format</goal>
+            </goals>
+            <configuration>
+              <header>header-template-java.txt</header>
+              <mapping>
+                <java>DOUBLESLASH_STYLE</java>
+              </mapping>
+              <includes>
+                <include>**/*.java</include>
+              </includes>
+            </configuration>
+          </execution>
+          <!--
           <execution>
             <id>check-java-headers</id>
             <phase>verify</phase>
@@ -154,6 +175,7 @@
               </includes>
             </configuration>
           </execution>
+           -->
         </executions>
       </plugin>
     </plugins>
