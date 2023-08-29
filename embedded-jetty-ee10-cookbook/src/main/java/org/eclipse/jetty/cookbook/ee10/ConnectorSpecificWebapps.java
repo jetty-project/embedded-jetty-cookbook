@@ -1,0 +1,60 @@
+//
+// ========================================================================
+// Copyright (c) 1995 Mort Bay Consulting Pty Ltd and others.
+//
+// This program and the accompanying materials are made available under the
+// terms of the Eclipse Public License v. 2.0 which is available at
+// https://www.eclipse.org/legal/epl-2.0, or the Apache License, Version 2.0
+// which is available at https://www.apache.org/licenses/LICENSE-2.0.
+//
+// SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
+// ========================================================================
+//
+
+package org.eclipse.jetty.cookbook.ee10;
+
+import java.util.List;
+
+import org.eclipse.jetty.ee10.webapp.WebAppContext;
+import org.eclipse.jetty.server.Handler;
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.ServerConnector;
+
+public class ConnectorSpecificWebapps
+{
+    public static void main(String[] args) throws Exception
+    {
+        Server server = new Server();
+
+        ServerConnector connectorA = new ServerConnector(server);
+        connectorA.setPort(8080);
+        connectorA.setName("connA");
+        ServerConnector connectorB = new ServerConnector(server);
+        connectorB.setPort(9090);
+        connectorB.setName("connB");
+
+        server.addConnector(connectorA);
+        server.addConnector(connectorB);
+
+        // Basic handler collection
+        Handler.Sequence contexts = new Handler.Sequence();
+        server.setHandler(contexts);
+
+        // WebApp A
+        WebAppContext appA = new WebAppContext();
+        appA.setContextPath("/a");
+        appA.setWar("./src/main/wars/webapp-a.war");
+        appA.setVirtualHosts(List.of("@connA"));
+        contexts.addHandler(appA);
+
+        // WebApp B
+        WebAppContext appB = new WebAppContext();
+        appB.setContextPath("/b");
+        appB.setWar("./src/main/wars/webapp-b.war");
+        appB.setVirtualHosts(List.of("@connB"));
+        contexts.addHandler(appB);
+
+        server.start();
+        server.join();
+    }
+}

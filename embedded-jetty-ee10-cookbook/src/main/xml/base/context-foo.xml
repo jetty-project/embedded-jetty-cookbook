@@ -1,0 +1,20 @@
+<?xml version="1.0"?><!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "https://eclipse.dev/jetty/configure.dtd">
+<Configure id="Contexts" class="org.eclipse.jetty.server.handler.ContextHandlerCollection">
+  <Call name="addHandler">
+    <Arg>
+      <New class="org.eclipse.jetty.ee10.servlet.ServletContextHandler">
+        <Set name="contextPath">/foo</Set>
+        <Set name="resourceBase"><Property name="custom.resources" />/foo/
+        </Set>
+        <Call name="addServlet">
+          <Arg>org.eclipse.jetty.cookbook.servlets.HelloServlet</Arg>
+          <Arg>*.hello</Arg>
+        </Call>
+        <Call name="addServlet">
+          <Arg>org.eclipse.jetty.cookbook.servlets.DumpServlet</Arg>
+          <Arg>*.dump</Arg>
+        </Call>
+      </New>
+    </Arg>
+  </Call>
+</Configure>
