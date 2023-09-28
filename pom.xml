@@ -23,7 +23,7 @@
     <maven.install.plugin.version>3.0.0-M1</maven.install.plugin.version>
     <maven.deploy.plugin.version>3.0.0-M1</maven.deploy.plugin.version>
     <maven.exec.plugin.version>3.0.0</maven.exec.plugin.version>
-    <license.plugin.version>4.2</license.plugin.version>
+    <license.plugin.version>4.3</license.plugin.version>
 
     <slf4j.version>2.0.0-alpha1</slf4j.version>
     <servlet.version>4.0.4</servlet.version>
