@@ -9,7 +9,7 @@
   </parent>
 
   <groupId>org.eclipse.jetty</groupId>
-  <artifactId>embedded-jetty-cookbook</artifactId>
+  <artifactId>jetty-examples</artifactId>
   <version>11.0.x</version>
   <packaging>jar</packaging>
 
