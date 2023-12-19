@@ -3,8 +3,9 @@ name: Verify
 on:
   push:
     branches:
-      - 'master'
-      - 'main'
+      - 'jetty-9.4.x'
+      - 'jetty-10.0.x'
+      - 'jetty-11.0.x'
   pull_request:
 
 jobs:
