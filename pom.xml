@@ -14,7 +14,7 @@
   <packaging>jar</packaging>
 
   <properties>
-    <jdk.version.minimum>11</jdk.version.minimum>
+    <jdk.version.minimum>8</jdk.version.minimum>
     <jetty.version>9.4.53.v20231009</jetty.version>
     <servlet.version>3.1.0</servlet.version>
   </properties>
