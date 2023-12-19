@@ -1,40 +1,59 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.eclipse.jetty</groupId>
+    <artifactId>jetty-parent</artifactId>
+    <version>26</version>
+  </parent>
+
   <groupId>org.eclipse.jetty</groupId>
   <artifactId>embedded-jetty-cookbook</artifactId>
-  <version>1.0</version>
+  <version>11.0.x</version>
   <packaging>jar</packaging>
+
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>11</maven.compiler.source>
-    <maven.compiler.target>11</maven.compiler.target>
-
-    <maven.clean.plugin.version>3.1.0</maven.clean.plugin.version>
-    <maven.enforcer.plugin.version>3.4.1</maven.enforcer.plugin.version>
-    <maven.resources.plugin.version>3.2.0</maven.resources.plugin.version>
-    <maven.compiler.plugin.version>3.12.0</maven.compiler.plugin.version>
-    <maven.shade.plugin.version>3.2.4</maven.shade.plugin.version>
-    <maven.source.plugin.version>3.2.1</maven.source.plugin.version>
-    <maven.surefire.plugin.version>3.0.0-M5</maven.surefire.plugin.version>
-    <maven.jar.plugin.version>3.2.0</maven.jar.plugin.version>
-    <maven.javadoc.plugin.version>3.6.3</maven.javadoc.plugin.version>
-    <maven.install.plugin.version>3.0.0-M1</maven.install.plugin.version>
-    <maven.deploy.plugin.version>3.0.0-M1</maven.deploy.plugin.version>
-    <maven.exec.plugin.version>3.0.0</maven.exec.plugin.version>
-    <license.plugin.version>4.3</license.plugin.version>
-
-    <slf4j.version>2.0.0-alpha1</slf4j.version>
-    <servlet.version>5.0.0</servlet.version>
+    <jdk.version.minimum>11</jdk.version.minimum>
     <jetty.version>11.0.18</jetty.version>
+    <servlet.version>5.0.0</servlet.version>
   </properties>
-  <inceptionYear>1995</inceptionYear>
+
   <dependencies>
     <dependency>
       <groupId>jakarta.servlet</groupId>
       <artifactId>jakarta.servlet-api</artifactId>
       <version>${servlet.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-annotations</artifactId>
+      <version>${jetty.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-deploy</artifactId>
+      <version>${jetty.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-rewrite</artifactId>
+      <version>${jetty.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-slf4j-impl</artifactId>
+      <version>${jetty.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-webapp</artifactId>
+      <version>${jetty.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-xml</artifactId>
+      <version>${jetty.version}</version>
     </dependency>
     <dependency>
       <groupId>org.eclipse.jetty.websocket</groupId>
@@ -46,188 +65,5 @@
       <artifactId>websocket-jetty-server</artifactId>
       <version>${jetty.version}</version>
     </dependency>
-    <dependency>
-      <groupId>org.eclipse.jetty</groupId>
-      <artifactId>jetty-rewrite</artifactId>
-      <version>${jetty.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.eclipse.jetty</groupId>
-      <artifactId>jetty-webapp</artifactId>
-      <version>${jetty.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.eclipse.jetty</groupId>
-      <artifactId>jetty-deploy</artifactId>
-      <version>${jetty.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.eclipse.jetty</groupId>
-      <artifactId>jetty-annotations</artifactId>
-      <version>${jetty.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.eclipse.jetty</groupId>
-      <artifactId>jetty-xml</artifactId>
-      <version>${jetty.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.eclipse.jetty</groupId>
-      <artifactId>jetty-slf4j-impl</artifactId>
-      <version>${jetty.version}</version>
-    </dependency>
   </dependencies>
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>${maven.compiler.plugin.version}</version>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>${maven.javadoc.plugin.version}</version>
-        <executions>
-          <execution>
-            <id>javadoc-jar</id>
-            <phase>package</phase>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <source>8</source>
-          <charset>UTF-8</charset>
-          <docencoding>UTF-8</docencoding>
-          <encoding>UTF-8</encoding>
-          <docfilessubdirs>true</docfilessubdirs>
-          <detectLinks>false</detectLinks>
-          <detectJavaApiLink>false</detectJavaApiLink>
-          <show>protected</show>
-          <attach>true</attach>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-enforcer-plugin</artifactId>
-        <version>${maven.enforcer.plugin.version}</version>
-        <executions>
-          <execution>
-            <id>enforce-java</id>
-            <goals>
-              <goal>enforce</goal>
-            </goals>
-            <configuration>
-              <rules>
-                <requireMavenVersion>
-                  <version>[3.8.0,)</version>
-                </requireMavenVersion>
-                <requireJavaVersion>
-                  <version>[11,)</version>
-                  <message>[ERROR] OLD JDK [${java.version}] in use. Jetty ${jetty.version} requires JDK 11 or newer
-                  </message>
-                </requireJavaVersion>
-              </rules>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
-  <profiles>
-    <profile>
-      <!--
-      $ mvn verify -Plicense-check
-        -->
-      <id>license-check</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>com.mycila</groupId>
-            <artifactId>license-maven-plugin</artifactId>
-            <version>${license.plugin.version}</version>
-            <inherited>false</inherited>
-            <configuration>
-              <failIfMissing>true</failIfMissing>
-              <aggregate>true</aggregate>
-              <strictCheck>true</strictCheck>
-            </configuration>
-            <dependencies>
-              <dependency>
-                <groupId>com.mycila</groupId>
-                <artifactId>license-maven-plugin-git</artifactId>
-                <version>${license.plugin.version}</version>
-              </dependency>
-            </dependencies>
-            <executions>
-              <execution>
-                <id>check-java-headers</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>check</goal>
-                </goals>
-                <configuration>
-                  <header>header-template-java.txt</header>
-                  <mapping>
-                    <java>DOUBLESLASH_STYLE</java>
-                  </mapping>
-                  <includes>
-                    <include>**/*.java</include>
-                  </includes>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <!--
-        $ mvn initialize -Plicense-update
-        -->
-      <id>license-update</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>com.mycila</groupId>
-            <artifactId>license-maven-plugin</artifactId>
-            <version>${license.plugin.version}</version>
-            <inherited>false</inherited>
-            <configuration>
-              <failIfMissing>true</failIfMissing>
-              <aggregate>true</aggregate>
-              <strictCheck>true</strictCheck>
-            </configuration>
-            <dependencies>
-              <dependency>
-                <groupId>com.mycila</groupId>
-                <artifactId>license-maven-plugin-git</artifactId>
-                <version>${license.plugin.version}</version>
-              </dependency>
-            </dependencies>
-            <executions>
-              <execution>
-                <id>check-java-headers</id>
-                <phase>initialize</phase>
-                <goals>
-                  <goal>format</goal>
-                </goals>
-                <configuration>
-                  <header>header-template-java.txt</header>
-                  <mapping>
-                    <java>DOUBLESLASH_STYLE</java>
-                  </mapping>
-                  <includes>
-                    <include>**/*.java</include>
-                  </includes>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
 </project>
