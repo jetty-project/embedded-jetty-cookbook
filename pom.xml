@@ -10,7 +10,7 @@
 
   <groupId>org.eclipse.jetty</groupId>
   <artifactId>jetty-examples</artifactId>
-  <version>1.0</version>
+  <version>10.0.x</version>
   <packaging>jar</packaging>
 
   <properties>
