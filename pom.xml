@@ -15,7 +15,7 @@
 
   <properties>
     <jdk.version.minimum>11</jdk.version.minimum>
-    <jetty.version>11.0.19</jetty.version>
+    <jetty.version>11.0.20</jetty.version>
     <servlet.version>5.0.0</servlet.version>
   </properties>
 
